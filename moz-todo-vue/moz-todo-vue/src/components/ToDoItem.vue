@@ -1,6 +1,12 @@
 <template>
   <div>
-    <input type="checkbox" id="todo-item" :checked="isDone" />
+    <input
+      type="checkbox"
+      class="checkbox"
+      :id="id"
+      :checked="isDone"
+      @change="$emit('checkbox-changed')"
+    />
     <label :for="id">{{ label }}</label>
   </div>
 </template>
@@ -9,14 +15,14 @@ export default {
   props: {
     label: { required: true, type: String },
     done: { default: false, type: Boolean },
-    id: { required: true, type: String },
+    id: { required: true, type: String }
   },
   data() {
     return {
-      isDone: this.done,
-    }
-  },
-}
+      isDone: this.done
+    };
+  }
+};
 </script>
 <style scoped>
 .custom-checkbox > .checkbox-label {
@@ -69,7 +75,7 @@ export default {
   padding-left: 40px;
   clear: left;
 }
-.custom-checkbox > input[type='checkbox'] {
+.custom-checkbox > input[type="checkbox"] {
   -webkit-font-smoothing: antialiased;
   cursor: pointer;
   position: absolute;
@@ -92,7 +98,7 @@ export default {
   touch-action: manipulation;
 }
 .custom-checkbox > label::before {
-  content: '';
+  content: "";
   box-sizing: border-box;
   position: absolute;
   top: 0;
@@ -102,13 +108,13 @@ export default {
   border: 2px solid currentColor;
   background: transparent;
 }
-.custom-checkbox > input[type='checkbox']:focus + label::before {
+.custom-checkbox > input[type="checkbox"]:focus + label::before {
   border-width: 4px;
   outline: 3px dashed #228bec;
 }
 .custom-checkbox > label::after {
   box-sizing: content-box;
-  content: '';
+  content: "";
   position: absolute;
   top: 11px;
   left: 9px;
@@ -121,7 +127,7 @@ export default {
   opacity: 0;
   background: transparent;
 }
-.custom-checkbox > input[type='checkbox']:checked + label::after {
+.custom-checkbox > input[type="checkbox"]:checked + label::after {
   opacity: 1;
 }
 @media only screen and (min-width: 40rem) {
